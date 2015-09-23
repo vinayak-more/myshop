@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<classpath>
+	<classpathentry kind="src" path="src"/>
+	<classpathentry kind="con" path="org.eclipse.jst.server.core.container/org.jboss.ide.eclipse.as.core.server.runtime.runtimeTarget/JBoss 7.1 Runtime">
+		<attributes>
+			<attribute name="owner.project.facets" value="jst.web"/>
+		</attributes>
+	</classpathentry>
+	<classpathentry kind="con" path="org.eclipse.jst.j2ee.internal.web.container"/>
+	<classpathentry kind="con" path="org.eclipse.jst.j2ee.internal.module.container"/>
+	<classpathentry kind="con" path="org.eclipse.jdt.USER_LIBRARY/Hibernate"/>
+	<classpathentry kind="lib" path="/home/infibeam/myjar/mysql-connector-java-5.1.18-bin.jar"/>
+	<classpathentry kind="con" path="org.eclipse.jdt.launching.JRE_CONTAINER"/>
+	<classpathentry kind="lib" path="/home/infibeam/myjar/hibernate-proxool-4.2.19.Final.jar"/>
+	<classpathentry kind="lib" path="/home/infibeam/myjar/hibernate-osgi-4.2.19.Final.jar"/>
+	<classpathentry kind="lib" path="/home/infibeam/myjar/hibernate-infinispan-4.2.19.Final-tests.jar"/>
+	<classpathentry kind="lib" path="/home/infibeam/myjar/hibernate-infinispan-4.2.19.Final.jar"/>
+	<classpathentry kind="lib" path="/home/infibeam/myjar/hibernate-envers-4.2.19.Final.jar"/>
+	<classpathentry kind="lib" path="/home/infibeam/myjar/hibernate-entitymanager-4.2.19.Final.jar"/>
+	<classpathentry kind="lib" path="/home/infibeam/myjar/hibernate-ehcache-4.2.19.Final.jar"/>
+	<classpathentry kind="lib" path="/home/infibeam/myjar/hibernate-c3p0-4.2.19.Final.jar"/>
+	<classpathentry kind="lib" path="/home/infibeam/myjar/hibernate-core-4.2.19.Final.jar"/>
+	<classpathentry kind="lib" path="/home/infibeam/myjar/antlr-2.7.7.jar"/>
+	<classpathentry kind="output" path="build/classes"/>
+</classpath>
