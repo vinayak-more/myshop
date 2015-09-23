@@ -16,11 +16,11 @@
 
 	<dependencies>
 		<!--myshop-dbutils -->
-		<dependency>
+		<!-- <dependency>
 			<groupId>com.db</groupId>
 			<artifactId>myshop-dbutils</artifactId>
 			<version>0.0.1-SNAPSHOT</version>
-		</dependency>
+		</dependency> -->
 		<!--// -->
 		<dependency>
 			<groupId>junit</groupId>

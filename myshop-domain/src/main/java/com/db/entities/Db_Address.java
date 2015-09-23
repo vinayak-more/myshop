@@ -12,7 +12,7 @@ public class Db_Address {
 	private int rid;
 	
 	@Column(name="customer_id")
-	private int cusitomerId;
+	private int customerId;
 	
 	@Column(name="address_line_1")
 	private String addressLine1;
@@ -27,7 +27,7 @@ public class Db_Address {
 	private String state;
 	
 	@Column(name="pin_code")
-	private String pinCode;
+	private int pinCode;
 	
 	@Column(name="country")
 	private String country;
@@ -35,7 +35,7 @@ public class Db_Address {
 	@Column(name="landmark")
 	private String landmark;
 	
-	@Column(name="address-type")
+	@Column(name="address_type")
 	private String addressType;
 
 	public int getRid() {
@@ -47,11 +47,11 @@ public class Db_Address {
 	}
 
 	public int getCusitomerId() {
-		return cusitomerId;
+		return customerId;
 	}
 
-	public void setCusitomerId(int cusitomerId) {
-		this.cusitomerId = cusitomerId;
+	public void setCustomerId(int cusitomerId) {
+		this.customerId = cusitomerId;
 	}
 
 	public String getAddressLine1() {
@@ -86,11 +86,11 @@ public class Db_Address {
 		this.state = state;
 	}
 
-	public String getPinCode() {
+	public int getPinCode() {
 		return pinCode;
 	}
 
-	public void setPinCode(String pinCode) {
+	public void setPinCode(int pinCode) {
 		this.pinCode = pinCode;
 	}
 
