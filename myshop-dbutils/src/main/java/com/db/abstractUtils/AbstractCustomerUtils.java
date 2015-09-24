@@ -55,8 +55,8 @@ public class AbstractCustomerUtils {
 		tx.begin();
 
 		List<Db_Customer> customer = new ArrayList<Db_Customer>();
-		Query query = session.createQuery("from customer where fname= :fname");
-		query.setString("fname", fname);
+		Query query = session.createQuery("from Db_Customer where fname like :fname");
+		query.setString("fname", "%"+fname+"%");
 		customer=(List<Db_Customer>) query.list();
 
 		tx.commit();
@@ -74,8 +74,8 @@ public class AbstractCustomerUtils {
 		tx.begin();
 
 		List<Db_Customer> customer = new ArrayList<Db_Customer>();
-		Query query = session.createQuery("from customer where lname= :lname");
-		query.setString("lname", lname);
+		Query query = session.createQuery("from Db_Customer where lname like :lname");
+		query.setString("lname", "%"+lname+"%");
 		customer=(List<Db_Customer>) query.list();
 
 		tx.commit();
@@ -93,7 +93,7 @@ public class AbstractCustomerUtils {
 		tx.begin();
 
 		List<Db_Customer> customer = new ArrayList<Db_Customer>();
-		Query query = session.createQuery("from customer where mobile= :mobile");
+		Query query = session.createQuery("from Db_Customer where mobile= :mobile");
 		query.setString("mobile", mobile);
 		customer=(List<Db_Customer>) query.list();
 
@@ -103,7 +103,7 @@ public class AbstractCustomerUtils {
 		return customer;
 	}
 	
-	public static List<Db_Customer> getCustomerByUsername(String username) {
+	public static Db_Customer getCustomerByUsername(String username) {
 
 		SessionFactory factory = MySessionFactory.getSessionFactory();
 		Session session = factory.openSession();
@@ -111,10 +111,10 @@ public class AbstractCustomerUtils {
 		
 		tx.begin();
 
-		List<Db_Customer> customer = new ArrayList<Db_Customer>();
-		Query query = session.createQuery("from customer where username= :username");
+		Db_Customer customer = new Db_Customer();
+		Query query = session.createQuery("from Db_Customer where username= :username");
 		query.setString("username", username);
-		customer=(List<Db_Customer>) query.list();
+		customer= (Db_Customer) query.uniqueResult();
 
 		tx.commit();
 		session.close();
@@ -129,7 +129,7 @@ public class AbstractCustomerUtils {
 		
 		tx.begin();
 		
-		Query query = session.createQuery("UPDATE customer set fname=:fname where rid=:rid");
+		Query query = session.createQuery("UPDATE Db_Customer set fname=:fname where rid=:rid");
 		query.setString("fname", fname);
 		query.setInteger("rid", rid);
 		int rowsUpdated=query.executeUpdate();
@@ -149,9 +149,89 @@ public class AbstractCustomerUtils {
 		
 		tx.begin();
 		
-		Query query = session.createQuery("UPDATE customer set fname=:fname where username=:username");
+		Query query = session.createQuery("UPDATE Db_Customer set fname=:fname where username=:username");
 		query.setString("fname", fname);
 		query.setString("username", username);
+		int rowsUpdated=query.executeUpdate();
+		
+		
+		tx.commit();
+		session.close();
+		factory.close();
+		return rowsUpdated>=1?true:false;
+		
+	}
+	
+	public static boolean updateCustomerLnameById(int rid, String lname){
+		SessionFactory factory = MySessionFactory.getSessionFactory();
+		Session session = factory.openSession();
+		Transaction tx = session.getTransaction();
+		
+		tx.begin();
+		
+		Query query = session.createQuery("UPDATE Db_Customer set lname=:lname where rid=:rid");
+		query.setString("lname", lname);
+		query.setInteger("rid", rid);
+		int rowsUpdated=query.executeUpdate();
+		
+		
+		tx.commit();
+		session.close();
+		factory.close();
+		return rowsUpdated>=1?true:false;
+		
+	}
+	
+	public static boolean updateCustomerLnameByUsername(String username, String lname){
+		SessionFactory factory = MySessionFactory.getSessionFactory();
+		Session session = factory.openSession();
+		Transaction tx = session.getTransaction();
+		
+		tx.begin();
+		
+		Query query = session.createQuery("UPDATE Db_Customer set lname=:lname where username=:username");
+		query.setString("lname", lname);
+		query.setString("username", username);
+		int rowsUpdated=query.executeUpdate();
+		
+		
+		tx.commit();
+		session.close();
+		factory.close();
+		return rowsUpdated>=1?true:false;
+		
+	}
+	
+	public static boolean updateCustomerMobileByUsername(String username, String mobile){
+		SessionFactory factory = MySessionFactory.getSessionFactory();
+		Session session = factory.openSession();
+		Transaction tx = session.getTransaction();
+		
+		tx.begin();
+		
+		Query query = session.createQuery("UPDATE Db_Customer set mobile=:mobile where username=:username");
+		query.setString("mobile", mobile);
+		query.setString("username", username);
+		int rowsUpdated=query.executeUpdate();
+		
+		
+		tx.commit();
+		session.close();
+		factory.close();
+		return rowsUpdated>=1?true:false;
+		
+	}
+	
+	public static boolean updateCustomerMobileById(int rid, String mobile){
+		SessionFactory factory = MySessionFactory.getSessionFactory();
+		Session session = factory.openSession();
+		Transaction tx = session.getTransaction();
+		
+		tx.begin();
+		
+		Query query = session.createQuery("UPDATE Db_Customer set mobile=:mobile where rid=:rid");
+		query.setString("mobile", mobile);
+		query.setInteger("rid", rid);
 		int rowsUpdated=query.executeUpdate();
 		
 		

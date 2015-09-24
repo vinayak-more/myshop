@@ -37,7 +37,7 @@ public class AbstractAddressUtils {
 		tx.begin();
 
 		List<Db_Address> address = new ArrayList<Db_Address>();
-		Query query = session.createQuery("from address where customer_id=:customer_id");
+		Query query = session.createQuery("from Db_Address where customer_id=:customer_id");
 		query.setInteger("customer_id", customer_id);
 		address=(List<Db_Address>) query.list();
 
@@ -47,7 +47,7 @@ public class AbstractAddressUtils {
 		return address;
 	}
 	
-	public static List<Db_Address> getAddressById(int rid) {
+	public static Db_Address getAddressById(int rid) {
 
 		SessionFactory factory = MySessionFactory.getSessionFactory();
 		Session session = factory.openSession();
@@ -55,10 +55,10 @@ public class AbstractAddressUtils {
 		
 		tx.begin();
 
-		List<Db_Address> address = new ArrayList<Db_Address>();
-		Query query = session.createQuery("from address where rid=:rid");
+		Db_Address address = new Db_Address();
+		Query query = session.createQuery("from Db_Address where rid=:rid");
 		query.setInteger("rid", rid);
-		address=(List<Db_Address>) query.list();
+		address=(Db_Address) query.uniqueResult();
 
 		tx.commit();
 		session.close();
@@ -75,8 +75,8 @@ public class AbstractAddressUtils {
 		tx.begin();
 
 		List<Db_Address> address = new ArrayList<Db_Address>();
-		Query query = session.createQuery("from address where city like %:city%");
-		query.setString("city", city);
+		Query query = session.createQuery("from Db_Address where city like :city");
+		query.setString("city", "%"+city+"%");
 		address=(List<Db_Address>) query.list();
 
 		tx.commit();
@@ -94,8 +94,8 @@ public class AbstractAddressUtils {
 		tx.begin();
 
 		List<Db_Address> address = new ArrayList<Db_Address>();
-		Query query = session.createQuery("from address where state like %:state%");
-		query.setString("state", state);
+		Query query = session.createQuery("from Db_Address where state like :state");
+		query.setString("state", "%"+state+"%");
 		address=(List<Db_Address>) query.list();
 
 		tx.commit();
@@ -113,8 +113,8 @@ public class AbstractAddressUtils {
 		tx.begin();
 
 		List<Db_Address> address = new ArrayList<Db_Address>();
-		Query query = session.createQuery("from address where country like %:country%");
-		query.setString("country", country);
+		Query query = session.createQuery("from Db_Address where country like :country");
+		query.setString("country", "%"+country+"%");
 		address=(List<Db_Address>) query.list();
 
 		tx.commit();
@@ -132,7 +132,7 @@ public class AbstractAddressUtils {
 		tx.begin();
 
 		List<Db_Address> address = new ArrayList<Db_Address>();
-		Query query = session.createQuery("from address where pincode=:pincode");
+		Query query = session.createQuery("from Db_Address where pincode=:pincode");
 		query.setInteger("pincode", pincode);
 		address=(List<Db_Address>) query.list();
 
@@ -151,8 +151,46 @@ public class AbstractAddressUtils {
 		tx.begin();
 
 		List<Db_Address> address = new ArrayList<Db_Address>();
-		Query query = session.createQuery("from address where landmark like %:landmark%");
-		query.setString("landmark", landmark);
+		Query query = session.createQuery("from Db_Address where landmark like :landmark");
+		query.setString("landmark", "%"+landmark+"%");
+		address=(List<Db_Address>) query.list();
+
+		tx.commit();
+		session.close();
+		factory.close();
+		return address;
+	}
+	
+	public static List<Db_Address> getAddressByCustomerFname(String fname) {
+
+		SessionFactory factory = MySessionFactory.getSessionFactory();
+		Session session = factory.openSession();
+		Transaction tx = session.getTransaction();
+		
+		tx.begin();
+
+		List<Db_Address> address = new ArrayList<Db_Address>();
+		Query query = session.createQuery("FROM Db_Address where customer_id in (SELECT rid from Db_Customer	 where fname like :fname)");
+		query.setString("fname", "%"+fname+"%");
+		address=(List<Db_Address>) query.list();
+
+		tx.commit();
+		session.close();
+		factory.close();
+		return address;
+	}
+	
+	public static List<Db_Address> getAddressByCustomerLname(String lname) {
+
+		SessionFactory factory = MySessionFactory.getSessionFactory();
+		Session session = factory.openSession();
+		Transaction tx = session.getTransaction();
+		
+		tx.begin();
+
+		List<Db_Address> address = new ArrayList<Db_Address>();
+		Query query = session.createQuery("FROM Db_Address where customer_id in (SELECT rid from Db_Customer	 where fname like :lname)");
+		query.setString("lname", "%"+lname+"%");
 		address=(List<Db_Address>) query.list();
 
 		tx.commit();
