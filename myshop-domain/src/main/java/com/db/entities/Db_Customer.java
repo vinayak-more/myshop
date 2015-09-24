@@ -28,7 +28,7 @@ public class Db_Customer {
 	@Column(name="password")
 	private String password;
 
-	public int getRid() {
+	public long getRid() {
 		return rid;
 	}
 
