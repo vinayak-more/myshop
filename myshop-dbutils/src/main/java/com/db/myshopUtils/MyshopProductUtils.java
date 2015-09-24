@@ -10,6 +10,7 @@ import com.db.entities.Db_Product;
 import com.db.myshop_dbutils.MySessionFactory;
 
 public class MyshopProductUtils extends AbstractProductUtils {
+	
 	public static Db_Product getProductByTagNo(int tagNo) {
 
 		SessionFactory factory = MySessionFactory.getSessionFactory();
@@ -19,7 +20,7 @@ public class MyshopProductUtils extends AbstractProductUtils {
 		tx.begin();
 
 		Db_Product product = new Db_Product();
-		Query query = session.createQuery("from product where tagNo= :tagNo");
+		Query query = session.createQuery("from Db_Product where tagNo= :tagNo");
 		query.setInteger("tagNo", tagNo);
 		product=(Db_Product) query.uniqueResult();
 
@@ -38,7 +39,7 @@ public class MyshopProductUtils extends AbstractProductUtils {
 		tx.begin();
 
 		Db_Product product = new Db_Product();
-		Query query = session.createQuery("from product where height= :height");
+		Query query = session.createQuery("from Db_Product where height= :height");
 		query.setFloat("height", height);
 		product=(Db_Product) query.uniqueResult();
 

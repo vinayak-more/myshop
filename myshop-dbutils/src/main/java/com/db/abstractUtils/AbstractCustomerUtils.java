@@ -35,7 +35,7 @@ public class AbstractCustomerUtils {
 		tx.begin();
 
 		Db_Customer customer = new Db_Customer();
-		Query query = session.createQuery("from customer where rid= :rid");
+		Query query = session.createQuery("from Db_Customer where rid= :rid");
 		query.setInteger("rid", rid);
 		customer=(Db_Customer) query.uniqueResult();
 
@@ -75,6 +75,26 @@ public class AbstractCustomerUtils {
 
 		List<Db_Customer> customer = new ArrayList<Db_Customer>();
 		Query query = session.createQuery("from Db_Customer where lname like :lname");
+		query.setString("lname", "%"+lname+"%");
+		customer=(List<Db_Customer>) query.list();
+
+		tx.commit();
+		session.close();
+		factory.close();
+		return customer;
+	}
+	
+	public static List<Db_Customer> getCustomerByFullName(String fname, String lname) {
+
+		SessionFactory factory = MySessionFactory.getSessionFactory();
+		Session session = factory.openSession();
+		Transaction tx = session.getTransaction();
+		
+		tx.begin();
+
+		List<Db_Customer> customer = new ArrayList<Db_Customer>();
+		Query query = session.createQuery("from Db_Customer where fname like :fname or lname like :lname ");
+		query.setString("fname", "%"+fname+"%");
 		query.setString("lname", "%"+lname+"%");
 		customer=(List<Db_Customer>) query.list();
 

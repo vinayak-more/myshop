@@ -16,7 +16,7 @@ public class Db_BookingDetails {
 	@Column(name="rid")
 	private int rid;
 	
-	@Column(name="vooking_id")
+	@Column(name="booking_id")
 	private int bookingId;
 	
 	@Column(name="customer_id")
@@ -41,11 +41,14 @@ public class Db_BookingDetails {
 	private float amountBalanced;
 	
 	@Column(name="discount_given")
-	private float diacountGiven;
+	private float discountGiven;
 	
 	@Column(name="discount_in_percent")
 	private float discointInPercent;
-
+	
+	@Column(name="booking_status")
+	private String bookingStatus;
+	
 	public int getRid() {
 		return rid;
 	}
@@ -119,11 +122,11 @@ public class Db_BookingDetails {
 	}
 
 	public float getDiacountGiven() {
-		return diacountGiven;
+		return discountGiven;
 	}
 
 	public void setDiacountGiven(float diacountGiven) {
-		this.diacountGiven = diacountGiven;
+		this.discountGiven = diacountGiven;
 	}
 
 	public float getDiscointInPercent() {
@@ -132,6 +135,22 @@ public class Db_BookingDetails {
 
 	public void setDiscointInPercent(float discointInPercent) {
 		this.discointInPercent = discointInPercent;
+	}
+
+	public float getDiscountGiven() {
+		return discountGiven;
+	}
+
+	public void setDiscountGiven(float discountGiven) {
+		this.discountGiven = discountGiven;
+	}
+
+	public String getBookingStatus() {
+		return bookingStatus;
+	}
+
+	public void setBookingStatus(String bookingStatus) {
+		this.bookingStatus = bookingStatus;
 	}
 	
 	
