@@ -28,6 +28,9 @@ public class Db_Customer {
 	@Column(name="password")
 	private String password;
 
+	@Column(name="email")
+	private String email;
+
 	public int getRid() {
 		return rid;
 	}
@@ -76,6 +79,12 @@ public class Db_Customer {
 		this.password = password;
 	}
 	
-	
+	public String getEmail() {
+		return email;
+	}
+
+	public void setEmail(String email) {
+		this.email = email;
+	}
 
 }

@@ -45,6 +45,44 @@ public class AbstractCustomerUtils {
 		return customer;
 	}
 	
+	public static Db_Customer getCustomerByUsername(String username) {
+
+        SessionFactory factory = MySessionFactory.getSessionFactory();
+        Session session = factory.openSession();
+        Transaction tx = session.getTransaction();
+        
+        tx.begin();
+
+        Db_Customer customer = new Db_Customer();
+        Query query = session.createQuery("from Db_Customer where username= :username");
+        query.setString("username", username);
+        customer= (Db_Customer) query.uniqueResult();
+
+        tx.commit();
+        session.close();
+        factory.close();
+        return customer;
+    }
+	
+	public static Db_Customer getCustomerByEmail(String email) {
+
+        SessionFactory factory = MySessionFactory.getSessionFactory();
+        Session session = factory.openSession();
+        Transaction tx = session.getTransaction();
+        
+        tx.begin();
+
+        Db_Customer customer = new Db_Customer();
+        Query query = session.createQuery("from Db_Customer where email= :email");
+        query.setString("email", email);
+        customer= (Db_Customer) query.uniqueResult();
+
+        tx.commit();
+        session.close();
+        factory.close();
+        return customer;
+    }
+	
 
 	public static List<Db_Customer> getCustomerByFname(String fname) {
 
@@ -123,24 +161,7 @@ public class AbstractCustomerUtils {
 		return customer;
 	}
 	
-	public static Db_Customer getCustomerByUsername(String username) {
-
-		SessionFactory factory = MySessionFactory.getSessionFactory();
-		Session session = factory.openSession();
-		Transaction tx = session.getTransaction();
-		
-		tx.begin();
-
-		Db_Customer customer = new Db_Customer();
-		Query query = session.createQuery("from Db_Customer where username= :username");
-		query.setString("username", username);
-		customer= (Db_Customer) query.uniqueResult();
-
-		tx.commit();
-		session.close();
-		factory.close();
-		return customer;
-	}
+	
 	
 	public static boolean updateCustomerFnameById(int rid, String fname){
 		SessionFactory factory = MySessionFactory.getSessionFactory();
