@@ -1,3 +1,5 @@
+CREATE DATABASE  IF NOT EXISTS `myshop` /*!40100 DEFAULT CHARACTER SET latin1 */;
+USE `myshop`;
 -- MySQL dump 10.13  Distrib 5.6.24, for linux-glibc2.5 (x86_64)
 --
 -- Host: localhost    Database: myshop
@@ -111,40 +113,6 @@ INSERT INTO `customer` VALUES (1,'Ram','More','8888888888','vinayak','infi@123',
 UNLOCK TABLES;
 
 --
--- Table structure for table `email`
---
-
-DROP TABLE IF EXISTS `email`;
-/*!40101 SET @saved_cs_client     = @@character_set_client */;
-/*!40101 SET character_set_client = utf8 */;
-CREATE TABLE `email` (
-  `rid` int(11) NOT NULL AUTO_INCREMENT,
-  `customer_id` int(11) NOT NULL,
-  `product_id` int(11) NOT NULL,
-  `address_id` int(11) NOT NULL,
-  `email_from` varchar(100) NOT NULL DEFAULT 'noreply@myshop.com',
-  `email_to` varchar(100) NOT NULL,
-  `email_subject` varchar(700) DEFAULT NULL,
-  `email_body` varchar(750) DEFAULT NULL,
-  `sent_on` timestamp NULL DEFAULT CURRENT_TIMESTAMP,
-  PRIMARY KEY (`rid`),
-  KEY `customer_rid` (`customer_id`),
-  KEY `product_rid` (`product_id`),
-  CONSTRAINT `customer_id` FOREIGN KEY (`customer_id`) REFERENCES `customer` (`rid`) ON DELETE NO ACTION ON UPDATE NO ACTION,
-  CONSTRAINT `product_id` FOREIGN KEY (`product_id`) REFERENCES `product` (`rid`) ON DELETE NO ACTION ON UPDATE NO ACTION
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
-/*!40101 SET character_set_client = @saved_cs_client */;
-
---
--- Dumping data for table `email`
---
-
-LOCK TABLES `email` WRITE;
-/*!40000 ALTER TABLE `email` DISABLE KEYS */;
-/*!40000 ALTER TABLE `email` ENABLE KEYS */;
-UNLOCK TABLES;
-
---
 -- Table structure for table `email_template`
 --
 
@@ -154,9 +122,9 @@ DROP TABLE IF EXISTS `email_template`;
 CREATE TABLE `email_template` (
   `rid` int(11) NOT NULL AUTO_INCREMENT,
   `email_type` varchar(100) NOT NULL,
-  `from` varchar(100) NOT NULL DEFAULT 'noreply@myshop.com',
-  `subject` varchar(100) NOT NULL,
-  `body` varchar(750) NOT NULL,
+  `email_from` varchar(100) NOT NULL DEFAULT 'noreply@myshop.com',
+  `email_subject` varchar(100) NOT NULL,
+  `email_body_template` varchar(750) NOT NULL,
   PRIMARY KEY (`rid`)
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 /*!40101 SET character_set_client = @saved_cs_client */;
@@ -203,6 +171,33 @@ LOCK TABLES `product` WRITE;
 /*!40000 ALTER TABLE `product` DISABLE KEYS */;
 /*!40000 ALTER TABLE `product` ENABLE KEYS */;
 UNLOCK TABLES;
+
+--
+-- Table structure for table `user`
+--
+
+DROP TABLE IF EXISTS `user`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
+CREATE TABLE `user` (
+  `rid` int(11) NOT NULL AUTO_INCREMENT,
+  `username` varchar(100) NOT NULL,
+  `password` varchar(100) NOT NULL,
+  `user_type` varchar(45) NOT NULL,
+  `user_creation_date` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
+  `user_last_logging_date` timestamp NULL DEFAULT NULL,
+  PRIMARY KEY (`rid`)
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `user`
+--
+
+LOCK TABLES `user` WRITE;
+/*!40000 ALTER TABLE `user` DISABLE KEYS */;
+/*!40000 ALTER TABLE `user` ENABLE KEYS */;
+UNLOCK TABLES;
 /*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
 
 /*!40101 SET SQL_MODE=@OLD_SQL_MODE */;
@@ -213,4 +208,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2015-10-01 15:39:51
+-- Dump completed on 2015-10-07 10:44:34
