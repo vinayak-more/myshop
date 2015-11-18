@@ -13,7 +13,7 @@ charset=ISO-8859-1">
 		<div class="jumbotron">
 			<div class="container">
 				<!-- <h1>Products</h1> -->
-				<h1><spring:message	code="products.title" /></label></h1>
+				<h1><spring:message	code="products.title" /></h1>
 				<p>All the available products in our store</p>
 			</div>
 		</div>
@@ -24,7 +24,7 @@ charset=ISO-8859-1">
 				<div class="col-sm-6 col-md-3" style="padding-bottom: 15px">
 					<div class="thumbnail">
 						<img
-							src="<c:url value="/resource/images/${product.productId}.jpg"></c:url>"
+							src="<c:url value="/resource/images/${product.imagePath}"></c:url>"
 							alt="image" style="width: 100%" />
 						<div class="caption">
 							<h3>${product.name}</h3>

@@ -1,4 +1,4 @@
-package com.vinayak.webstore.domain.repository;
+package com.vinayak.webstore.repository;
 
 import java.util.List;
 import java.util.Map;

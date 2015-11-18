@@ -2,8 +2,9 @@ package com.vinayak.webstore.service.impl;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+
 import com.vinayak.webstore.domain.Product;
-import com.vinayak.webstore.domain.repository.ProductRepository;
+import com.vinayak.webstore.repository.ProductRepository;
 import com.vinayak.webstore.service.OrderService;
 
 @Service

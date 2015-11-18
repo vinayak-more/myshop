@@ -1,6 +1,14 @@
 package com.db.entities;
 
-import javax.persistence.*;
+import java.util.List;
+
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.FetchType;
+import javax.persistence.GeneratedValue;
+import javax.persistence.Id;
+import javax.persistence.OneToMany;
+import javax.persistence.Table;
 
 @Entity
 @Table(name = "product")
@@ -13,6 +21,9 @@ public class Db_Product {
 
 	@Column(name = "pname")
 	private String pname;
+	
+	@Column(name = "product_id")
+    private String productId;
 
 	@Column(name = "seller")
 	private String seller;
@@ -44,8 +55,39 @@ public class Db_Product {
 	@Column(name = "description")
 	private String description;
 
-	@Column(name = "catagory")
-	private String catagory;
+	@Column(name = "category")
+	private String category;
+	
+	@Column(name = "manufacturer")
+    private String manufacturer;
+	
+	@Column(name = "units_in_stock")
+    private int unitsInStock;
+	
+	@Column(name = "units_in_order")
+    private int unitsInOrder;
+	
+	@Column(name = "condition")
+    private String condition;
+	
+	@OneToMany(mappedBy="product" ,fetch = FetchType.EAGER)
+	private List<Db_Images> images;
+	
+	public String getCategory() {
+		return category;
+	}
+
+	public void setCategory(String category) {
+		this.category = category;
+	}
+
+	public List<Db_Images> getImages() {
+		return images;
+	}
+
+	public void setImages(List<Db_Images> images) {
+		this.images = images;
+	}
 
 	public int getRid() {
 		return rid;
@@ -63,7 +105,15 @@ public class Db_Product {
 		this.pname = pname;
 	}
 
-	public String getSeller() {
+	public String getProductId() {
+        return productId;
+    }
+
+    public void setProductId(String productId) {
+        this.productId = productId;
+    }
+
+    public String getSeller() {
 		return seller;
 	}
 
@@ -143,12 +193,44 @@ public class Db_Product {
 		this.description = description;
 	}
 
-	public String getCatagory() {
-		return catagory;
+	public String getcategory() {
+		return category;
 	}
 
-	public void setCatagory(String catagory) {
-		this.catagory = catagory;
+	public void setcategory(String category) {
+		this.category = category;
 	}
+
+    public String getManufacturer() {
+        return manufacturer;
+    }
+
+    public void setManufacturer(String manufacturer) {
+        this.manufacturer = manufacturer;
+    }
+
+    public int getUnitsInStock() {
+        return unitsInStock;
+    }
+
+    public void setUnitsInStock(int unitsInStock) {
+        this.unitsInStock = unitsInStock;
+    }
+
+    public int getUnitsInOrder() {
+        return unitsInOrder;
+    }
+
+    public void setUnitsInOrder(int unitsInOrder) {
+        this.unitsInOrder = unitsInOrder;
+    }
+
+    public String getCondition() {
+        return condition;
+    }
+
+    public void setCondition(String condition) {
+        this.condition = condition;
+    }
 
 }

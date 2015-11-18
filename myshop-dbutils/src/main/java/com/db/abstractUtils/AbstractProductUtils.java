@@ -13,14 +13,14 @@ import com.db.myshop_dbutils.MySessionFactory;
 @SuppressWarnings("unchecked")
 public class AbstractProductUtils {
 	
-	public static void insertProduct(Db_Product product){
+	public static void saveProduct(Db_Product product){
 		SessionFactory factory = MySessionFactory.getSessionFactory();
 		Session session = factory.openSession();
 		Transaction tx = session.getTransaction();
 		
 		tx.begin();
 
-		session.persist(product);
+		session.save(product);
 
 		tx.commit();
 		session.close();
@@ -46,6 +46,24 @@ public class AbstractProductUtils {
 		factory.close();
 		return product;
 	}
+	
+	public static List<Db_Product> getAllProducts() {
+
+        SessionFactory factory = MySessionFactory.getSessionFactory();
+        Session session = factory.openSession();
+        Transaction tx = session.getTransaction();
+        
+        tx.begin();
+
+        List<Db_Product> product = new ArrayList<Db_Product>();
+        Query query = session.createQuery("from Db_Product");
+        product=(List<Db_Product>) query.list();
+
+        tx.commit();
+        session.close();
+        factory.close();
+        return product;
+    }
 	
 	public static List<Db_Product> getProductsByPname(String pname) {
 

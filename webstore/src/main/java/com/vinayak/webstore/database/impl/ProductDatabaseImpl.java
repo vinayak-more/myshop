@@ -4,17 +4,19 @@ import java.math.BigDecimal;
 import java.util.ArrayList;
 import java.util.List;
 
+import org.springframework.stereotype.Repository;
+
 import com.db.entities.Db_Product;
 import com.db.myshopUtils.MyshopProductUtils;
 import com.vinayak.webstore.database.ProductDatabase;
 import com.vinayak.webstore.domain.Product;
 
+@Repository
 public class ProductDatabaseImpl implements ProductDatabase {
 
-    Db_Product db_product;
     @Override
     public void addProductToDatabase(Product product) {
-        db_product=new Db_Product();
+    	 Db_Product  db_product=new Db_Product();
         db_product.setProductId(product.getProductId());
         db_product.setPname(product.getName());
         db_product.setUnitsInStock((int)product.getUnitsInStock());
@@ -41,7 +43,8 @@ public class ProductDatabaseImpl implements ProductDatabase {
             product.setManufacturer(db_Product.getDescription());
             product.setCategory(db_Product.getcategory());
             product.setUnitsInStock(db_Product.getUnitsInStock());
-            product.setCondition(db_product.getCondition());
+            product.setCondition(db_Product.getCondition());
+            product.setImagePath(db_Product.getImages().get(0).getImagePath());
             
             list.add(product);
         }
