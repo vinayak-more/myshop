@@ -43,14 +43,6 @@ public class Db_Product {
 	@Column(name = "rating")
 	private float rating;
 
-	@Column(name = "tag_no")
-	private int tagNo;
-
-	@Column(name = "rack_no")
-	private int rackNo;
-
-	@Column(name = "height")
-	private float height;
 
 	@Column(name = "description")
 	private String description;
@@ -161,29 +153,6 @@ public class Db_Product {
 		this.rating = rating;
 	}
 
-	public int getTagNo() {
-		return tagNo;
-	}
-
-	public void setTagNo(int tagNo) {
-		this.tagNo = tagNo;
-	}
-
-	public int getRackNo() {
-		return rackNo;
-	}
-
-	public void setRackNo(int rackNo) {
-		this.rackNo = rackNo;
-	}
-
-	public float getHeight() {
-		return height;
-	}
-
-	public void setHeight(float height) {
-		this.height = height;
-	}
 
 	public String getDescription() {
 		return description;

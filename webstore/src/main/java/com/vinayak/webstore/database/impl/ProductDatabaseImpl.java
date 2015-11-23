@@ -25,7 +25,7 @@ public class ProductDatabaseImpl implements ProductDatabase {
         db_product.setManufacturer(product.getManufacturer());
         db_product.setcategory(product.getCategory());
         db_product.setUnitsInStock((int)product.getUnitsInStock());
-        db_product.setCondition(product.getCondition());
+        db_product.setCondition(product.getCondition()==null?"old":product.getCondition());
         MyshopProductUtils.saveProduct(db_product);
     }
     

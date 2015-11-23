@@ -4,14 +4,13 @@
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
-<meta name="_csrf_parameter" content="_csrf" />
-<meta name="_csrf_header" content="X-CSRF-TOKEN" />
+
 <link rel="stylesheet"
 	href="<c:url value="/bootstrap/css/bootstrap.min.css"></c:url>">
 <title>Products</title>
 </head>
 <c:url var="logoutUrl" value="/logout" />
-<c:url var="addProduct" value="/products/add?${_csrf.parameterName}=${_csrf.token}"/>
+<c:url var="addProductUrl" value="/products/add?${_csrf.parameterName}=${_csrf.token}"/>
 
 <body>
 	<section>
@@ -29,7 +28,7 @@
 	</section>
 	<section class="container">
 		<form:form modelAttribute="newProduct" class="form-horizontal"
-			enctype="multipart/form-data"  action="${addProduct}" method="post">
+			  action="${addProductUrl}" method="post" >
 			<fieldset>
 				
 				<legend>Add new product</legend>

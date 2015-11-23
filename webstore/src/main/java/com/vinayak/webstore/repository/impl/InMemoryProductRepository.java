@@ -51,7 +51,7 @@ public void initStaticProducts(){
     @Override
     public List<Product> getAllProducts() {
     	listOfProducts.clear();
-    	initStaticProducts();
+    	//initStaticProducts();
     	listOfProducts.addAll(productDatabase.getAllProducts());
         return listOfProducts;
         
@@ -107,7 +107,7 @@ public void initStaticProducts(){
     @Override
     public void addProduct(Product product) {
         listOfProducts.add(product);
-       // productDatabase.addProductToDatabase(product);
+        productDatabase.addProductToDatabase(product);
     }
     
     
