@@ -10,6 +10,7 @@ public class CartItem {
 	public CartItem(Product product) {
 		super();
 		this.product = product;
+		updateTotalPrice();
 	}
 	public Product getProduct() {
 		return product;

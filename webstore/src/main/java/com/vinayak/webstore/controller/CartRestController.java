@@ -21,7 +21,7 @@ import com.vinayak.webstore.service.CartService;
 import com.vinayak.webstore.service.ProductService;
 
 @Controller
-@RequestMapping(value = "rest/cart")
+@RequestMapping(value = "/rest/cart")
 public class CartRestController {
 
 	@Autowired

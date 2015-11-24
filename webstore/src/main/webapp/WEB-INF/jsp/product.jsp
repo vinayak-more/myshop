@@ -42,7 +42,7 @@ charset=ISO-8859-1">
 				<p>
 					<a href="<spring:url value="/products" />" class="btn btn-default">
 						<span class="glyphicon-hand-left glyphicon"></span> back
-					</a> <a href="#" class="btn btn-warning btn-large"> <span
+					</a> <a href="<spring:url value="/order/${product.productId}"/>" class="btn btn-warning btn-large"> <span
 						class="glyphicon-shopping-cart glyphicon"> </span> Order Now
 					</a>
 				</p>

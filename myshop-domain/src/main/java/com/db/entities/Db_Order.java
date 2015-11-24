@@ -8,15 +8,15 @@ import javax.persistence.Id;
 import javax.persistence.Table;
 
 @Entity
-@Table(name="booking_details")
-public class Db_BookingDetails {
+@Table(name="order")
+public class Db_Order {
 	
 	@Id
 	@GeneratedValue
 	@Column(name="rid")
 	private int rid;
 	
-	@Column(name="booking_id")
+	@Column(name="order_id")
 	private int bookingId;
 	
 	@Column(name="customer_id")
@@ -47,7 +47,7 @@ public class Db_BookingDetails {
 	private float discointInPercent;
 	
 	@Column(name="booking_status")
-	private String bookingStatus;
+	private String orderStatus;
 	
 	public int getRid() {
 		return rid;
@@ -145,14 +145,14 @@ public class Db_BookingDetails {
 		this.discountGiven = discountGiven;
 	}
 
-	public String getBookingStatus() {
-		return bookingStatus;
-	}
+    public String getOrderStatus() {
+        return orderStatus;
+    }
 
-	public void setBookingStatus(String bookingStatus) {
-		this.bookingStatus = bookingStatus;
-	}
-	
+    public void setOrderStatus(String orderStatus) {
+        this.orderStatus = orderStatus;
+    }
+
 	
 
 }
