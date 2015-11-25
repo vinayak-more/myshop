@@ -9,4 +9,6 @@ public interface OrderService {
     void processOrder(String productId, int count);
 
     void processCustomerDetails(Customer customer);
+
+    boolean isProductExists(String productId);
 }

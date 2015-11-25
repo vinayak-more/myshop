@@ -109,6 +109,10 @@ public void initStaticProducts(){
         listOfProducts.add(product);
         productDatabase.addProductToDatabase(product);
     }
+    @Override
+    public boolean isProductExists(String productId) {
+        return listOfProducts.contains(getProductById(productId));
+    }
     
     
 }

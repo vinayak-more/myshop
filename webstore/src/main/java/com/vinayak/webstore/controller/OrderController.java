@@ -9,6 +9,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
 import com.vinayak.webstore.domain.Customer;
+import com.vinayak.webstore.exception.ProductNotFoundException;
 import com.vinayak.webstore.service.OrderService;
 
 @Controller
@@ -16,22 +17,27 @@ import com.vinayak.webstore.service.OrderService;
 public class OrderController {
     @Autowired
     private OrderService orderService;
-    
-    @RequestMapping("/order/P1234/2")
+
+    @RequestMapping("/P1234/2")
     public String process() {
         orderService.processOrder("P1234", 2);
         return "redirect:/products";
     }
-    
+
     @RequestMapping("/{productId}")
-    public String orderProductByPrdocutId(Model model, @PathVariable("productId") String productId){
-        orderService.processOrder(productId);
-        Customer customerDetails=new Customer();
-        model.addAttribute("customerDetails", customerDetails);
-        return "/step1";
+    public String orderProductByPrdocutId(Model model, @PathVariable("productId") String productId) {
+        if (orderService.isProductExists(productId)) {
+            orderService.processOrder(productId);
+            Customer customerDetails = new Customer();
+            model.addAttribute("customerDetails", customerDetails);
+            return "/step1";
+        }else{
+            throw new ProductNotFoundException(productId);
+        }
     }
-    @RequestMapping(value="/{productId}" , method=RequestMethod.POST)
-    public String processCustomerDetailsForm(@ModelAttribute("customerDetails") Customer customer ){
+
+    @RequestMapping(value = "/{productId}", method = RequestMethod.POST)
+    public String processCustomerDetailsForm(@ModelAttribute("customerDetails") Customer customer) {
         orderService.processCustomerDetails(customer);
         System.out.println(customer);
         return "/step2";

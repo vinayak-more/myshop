@@ -6,11 +6,13 @@ import java.util.Date;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import com.vinayak.webstore.database.OrderDatabase;
 import com.vinayak.webstore.domain.Cart;
 import com.vinayak.webstore.domain.CartItem;
 import com.vinayak.webstore.domain.Customer;
 import com.vinayak.webstore.domain.Order;
 import com.vinayak.webstore.domain.Product;
+import com.vinayak.webstore.repository.OrderRepository;
 import com.vinayak.webstore.repository.ProductRepository;
 import com.vinayak.webstore.service.OrderService;
 import com.webstore.commons.Constants;
@@ -19,6 +21,12 @@ import com.webstore.commons.Constants;
 public class OrderServiceImpl implements OrderService {
     @Autowired
     private ProductRepository productRepository;
+    
+    @Autowired
+    private OrderRepository orderRepository;
+    
+    @Autowired
+    private OrderDatabase orderDatabase;
     Order order;
 
     @Override
@@ -46,5 +54,12 @@ public class OrderServiceImpl implements OrderService {
     @Override
     public void processCustomerDetails(Customer customer) {
         order.setCustomer(customer);
+        orderDatabase.reserveOrder(order);
+       
+    }
+
+    @Override
+    public boolean isProductExists(String productId) {
+        return productRepository.isProductExists(productId);
     }
 }

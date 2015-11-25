@@ -18,4 +18,6 @@ public interface ProductRepository {
     
     void addProduct(Product product);
 
+    boolean isProductExists(String productId);
+
 }
