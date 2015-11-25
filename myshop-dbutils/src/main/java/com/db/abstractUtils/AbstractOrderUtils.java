@@ -15,9 +15,20 @@ import com.db.myshop_dbutils.MySessionFactory;
 @SuppressWarnings("unchecked")
 public class AbstractOrderUtils {
 	
+    static MySessionFactory sessionfactory=new MySessionFactory();
+    public static void saveBooking(Db_Order order){
+        SessionFactory factory = sessionfactory.getSessionFactory();
+        Session session = factory.openSession();
+        Transaction tx = session.getTransaction();
+        session.save(order);
+        tx.commit();
+        session.close();
+        
+    }
+    
 	public static Db_Order getBookingByRid(int rid) {
 
-		SessionFactory factory = MySessionFactory.getSessionFactory();
+		SessionFactory factory = sessionfactory.getSessionFactory();
 		Session session = factory.openSession();
 		Transaction tx = session.getTransaction();
 		
@@ -30,13 +41,13 @@ public class AbstractOrderUtils {
 
 		tx.commit();
 		session.close();
-		factory.close();
+		
 		return booking;
 	}
 	
 	public static Db_Order getBookingByBookingId(String bookingId) {
 
-		SessionFactory factory = MySessionFactory.getSessionFactory();
+		SessionFactory factory = sessionfactory.getSessionFactory();
 		Session session = factory.openSession();
 		Transaction tx = session.getTransaction();
 		
@@ -49,13 +60,13 @@ public class AbstractOrderUtils {
 
 		tx.commit();
 		session.close();
-		factory.close();
+		
 		return booking;
 	}
 	
 	public static List<Db_Order> getBookingsByCustomerId(int customerId) {
 
-		SessionFactory factory = MySessionFactory.getSessionFactory();
+		SessionFactory factory = sessionfactory.getSessionFactory();
 		Session session = factory.openSession();
 		Transaction tx = session.getTransaction();
 		
@@ -68,13 +79,13 @@ public class AbstractOrderUtils {
 
 		tx.commit();
 		session.close();
-		factory.close();
+		
 		return booking;
 	}
 	
 	public static List<Db_Order> getBookingsByProductId(int productId) {
 
-		SessionFactory factory = MySessionFactory.getSessionFactory();
+		SessionFactory factory = sessionfactory.getSessionFactory();
 		Session session = factory.openSession();
 		Transaction tx = session.getTransaction();
 		
@@ -87,13 +98,13 @@ public class AbstractOrderUtils {
 
 		tx.commit();
 		session.close();
-		factory.close();
+		
 		return booking;
 	}
 	
 	public static List<Db_Order> getBookingsByCustomerFname(String fname) {
 
-		SessionFactory factory = MySessionFactory.getSessionFactory();
+		SessionFactory factory = sessionfactory.getSessionFactory();
 		Session session = factory.openSession();
 		Transaction tx = session.getTransaction();
 		
@@ -106,13 +117,13 @@ public class AbstractOrderUtils {
 
 		tx.commit();
 		session.close();
-		factory.close();
+		
 		return booking;
 	}
 	
 	public static List<Db_Order> getBookingsByCustomerLname(String lname) {
 
-		SessionFactory factory = MySessionFactory.getSessionFactory();
+		SessionFactory factory = sessionfactory.getSessionFactory();
 		Session session = factory.openSession();
 		Transaction tx = session.getTransaction();
 		
@@ -125,13 +136,13 @@ public class AbstractOrderUtils {
 
 		tx.commit();
 		session.close();
-		factory.close();
+		
 		return booking;
 	}
 	
 	public static List<Db_Order> getBookingsByCustomerFullName(String fname, String lname) {
 
-		SessionFactory factory = MySessionFactory.getSessionFactory();
+		SessionFactory factory = sessionfactory.getSessionFactory();
 		Session session = factory.openSession();
 		Transaction tx = session.getTransaction();
 		
@@ -145,13 +156,13 @@ public class AbstractOrderUtils {
 
 		tx.commit();
 		session.close();
-		factory.close();
+		
 		return booking;
 	}
 
 	public static List<Db_Order> getBookingsByProductName(String pname) {
 
-		SessionFactory factory = MySessionFactory.getSessionFactory();
+		SessionFactory factory = sessionfactory.getSessionFactory();
 		Session session = factory.openSession();
 		Transaction tx = session.getTransaction();
 		
@@ -164,13 +175,13 @@ public class AbstractOrderUtils {
 
 		tx.commit();
 		session.close();
-		factory.close();
+		
 		return booking;
 	}
 	
 	public static List<Db_Order> getBookingsByProductSeller(String seller) {
 
-		SessionFactory factory = MySessionFactory.getSessionFactory();
+		SessionFactory factory = sessionfactory.getSessionFactory();
 		Session session = factory.openSession();
 		Transaction tx = session.getTransaction();
 		
@@ -183,13 +194,13 @@ public class AbstractOrderUtils {
 
 		tx.commit();
 		session.close();
-		factory.close();
+		
 		return booking;
 	}
 	
 	public static List<Db_Order> getBookingsByBookingStatus(String bookingStatus) {
 
-		SessionFactory factory = MySessionFactory.getSessionFactory();
+		SessionFactory factory = sessionfactory.getSessionFactory();
 		Session session = factory.openSession();
 		Transaction tx = session.getTransaction();
 		
@@ -202,13 +213,13 @@ public class AbstractOrderUtils {
 
 		tx.commit();
 		session.close();
-		factory.close();
+		
 		return booking;
 	}
 	
 	public static Db_Customer getCustomerByBookingId(String bookingId) {
 
-		SessionFactory factory = MySessionFactory.getSessionFactory();
+		SessionFactory factory = sessionfactory.getSessionFactory();
 		Session session = factory.openSession();
 		Transaction tx = session.getTransaction();
 		
@@ -221,13 +232,13 @@ public class AbstractOrderUtils {
 
 		tx.commit();
 		session.close();
-		factory.close();
+		
 		return customer;
 	}
 	
 	public static Db_Product getProductByBookingId(String bookingId) {
 
-		SessionFactory factory = MySessionFactory.getSessionFactory();
+		SessionFactory factory = sessionfactory.getSessionFactory();
 		Session session = factory.openSession();
 		Transaction tx = session.getTransaction();
 		
@@ -240,7 +251,7 @@ public class AbstractOrderUtils {
 
 		tx.commit();
 		session.close();
-		factory.close();
+		
 		return product;
 	}
 	

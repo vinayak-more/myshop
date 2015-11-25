@@ -9,10 +9,10 @@ import com.db.entities.Db_User;
 import com.db.myshop_dbutils.MySessionFactory;
 
 public class AbstractUserUtils {
-	
+    static MySessionFactory sessionfactory=new MySessionFactory();
 	public static void insertuser(Db_User user) {
 
-		SessionFactory factory = MySessionFactory.getSessionFactory();
+		SessionFactory factory = sessionfactory.getSessionFactory();
 		Session session = factory.openSession();
 		Transaction tx = session.getTransaction();
 		
@@ -22,12 +22,12 @@ public class AbstractUserUtils {
 
 		tx.commit();
 		session.close();
-		factory.close();
+		
 
 	}
 	public static Db_User getuserById(int rid) {
 
-		SessionFactory factory = MySessionFactory.getSessionFactory();
+		SessionFactory factory = sessionfactory.getSessionFactory();
 		Session session = factory.openSession();
 		Transaction tx = session.getTransaction();
 		
@@ -40,13 +40,13 @@ public class AbstractUserUtils {
 
 		tx.commit();
 		session.close();
-		factory.close();
+		
 		return user;
 	}
 	
 	public static Db_User getuserByUsername(String username) {
 
-        SessionFactory factory = MySessionFactory.getSessionFactory();
+        SessionFactory factory = sessionfactory.getSessionFactory();
         Session session = factory.openSession();
         Transaction tx = session.getTransaction();
         
@@ -59,12 +59,12 @@ public class AbstractUserUtils {
 
         tx.commit();
         session.close();
-        factory.close();
+        
         return user;
     }
 	public static Db_User getuserByUsernameAndPassword(String username, String password) {
 
-        SessionFactory factory = MySessionFactory.getSessionFactory();
+        SessionFactory factory = sessionfactory.getSessionFactory();
         Session session = factory.openSession();
         Transaction tx = session.getTransaction();
         
@@ -78,7 +78,7 @@ public class AbstractUserUtils {
 
         tx.commit();
         session.close();
-        factory.close();
+        
         return user;
     }
 

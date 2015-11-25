@@ -8,9 +8,9 @@ import com.db.entities.Db_EmailToCustomer;
 import com.db.myshop_dbutils.MySessionFactory;
 
 public class AbstractEmailToCustomer {
-	
+    static MySessionFactory sessionfactory=new MySessionFactory();
 	public static void insertSentEmail(Db_EmailToCustomer email){
-		SessionFactory factory = MySessionFactory.getSessionFactory();
+		SessionFactory factory = sessionfactory.getSessionFactory();
 		Session session = factory.openSession();
 		Transaction tx = session.getTransaction();
 		
@@ -20,7 +20,7 @@ public class AbstractEmailToCustomer {
 
 		tx.commit();
 		session.close();
-		factory.close();
+		
 	}
 
 }

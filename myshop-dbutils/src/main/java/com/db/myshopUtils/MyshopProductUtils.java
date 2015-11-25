@@ -10,10 +10,10 @@ import com.db.entities.Db_Product;
 import com.db.myshop_dbutils.MySessionFactory;
 
 public class MyshopProductUtils extends AbstractProductUtils {
-	
+    static MySessionFactory sessionfactory=new MySessionFactory();
 	public static Db_Product getProductByTagNo(int tagNo) {
 
-		SessionFactory factory = MySessionFactory.getSessionFactory();
+		SessionFactory factory = sessionfactory.getSessionFactory();
 		Session session = factory.openSession();
 		Transaction tx = session.getTransaction();
 		
@@ -26,13 +26,13 @@ public class MyshopProductUtils extends AbstractProductUtils {
 
 		tx.commit();
 		session.close();
-		factory.close();
+		
 		return product;
 	}
 	
 	public static Db_Product getProductByHeight(float height) {
 
-		SessionFactory factory = MySessionFactory.getSessionFactory();
+		SessionFactory factory = sessionfactory.getSessionFactory();
 		Session session = factory.openSession();
 		Transaction tx = session.getTransaction();
 		
@@ -45,7 +45,7 @@ public class MyshopProductUtils extends AbstractProductUtils {
 
 		tx.commit();
 		session.close();
-		factory.close();
+		
 		return product;
 	}
 

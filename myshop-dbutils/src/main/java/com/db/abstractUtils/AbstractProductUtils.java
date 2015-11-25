@@ -12,9 +12,9 @@ import com.db.entities.Db_Product;
 import com.db.myshop_dbutils.MySessionFactory;
 @SuppressWarnings("unchecked")
 public class AbstractProductUtils {
-	
+    static MySessionFactory sessionfactory=new MySessionFactory();
 	public static void saveProduct(Db_Product product){
-		SessionFactory factory = MySessionFactory.getSessionFactory();
+		SessionFactory factory = sessionfactory.getSessionFactory();
 		Session session = factory.openSession();
 		Transaction tx = session.getTransaction();
 		
@@ -24,13 +24,25 @@ public class AbstractProductUtils {
 
 		tx.commit();
 		session.close();
-		factory.close();
+		
 		
 	}
-	
+	public static void updateProduct(Db_Product product){
+	    SessionFactory factory = sessionfactory.getSessionFactory();
+        Session session = factory.openSession();
+        Transaction tx = session.getTransaction();
+        
+        tx.begin();
+
+        session.update(product);
+
+        tx.commit();
+        session.close();
+        
+	}
 	public static Db_Product getProductById(int rid) {
 
-		SessionFactory factory = MySessionFactory.getSessionFactory();
+		SessionFactory factory = sessionfactory.getSessionFactory();
 		Session session = factory.openSession();
 		Transaction tx = session.getTransaction();
 		
@@ -43,13 +55,32 @@ public class AbstractProductUtils {
 
 		tx.commit();
 		session.close();
-		factory.close();
+		
 		return product;
 	}
 	
+	public static Db_Product getProductByProductId(String productId) {
+
+        SessionFactory factory = sessionfactory.getSessionFactory();
+        Session session = factory.openSession();
+        Transaction tx = session.getTransaction();
+        
+        tx.begin();
+
+        Db_Product product = new Db_Product();
+        Query query = session.createQuery("from Db_Product where productId= :productId");
+        query.setString("productId", productId);
+        product=(Db_Product) query.uniqueResult();
+
+        tx.commit();
+        session.close();
+        
+        return product;
+    }
+	
 	public static List<Db_Product> getAllProducts() {
 
-        SessionFactory factory = MySessionFactory.getSessionFactory();
+        SessionFactory factory = sessionfactory.getSessionFactory();
         Session session = factory.openSession();
         Transaction tx = session.getTransaction();
         
@@ -61,13 +92,13 @@ public class AbstractProductUtils {
 
         tx.commit();
         session.close();
-        factory.close();
+        
         return product;
     }
 	
 	public static List<Db_Product> getProductsByPname(String pname) {
 
-		SessionFactory factory = MySessionFactory.getSessionFactory();
+		SessionFactory factory = sessionfactory.getSessionFactory();
 		Session session = factory.openSession();
 		Transaction tx = session.getTransaction();
 		
@@ -80,13 +111,13 @@ public class AbstractProductUtils {
 
 		tx.commit();
 		session.close();
-		factory.close();
+		
 		return product;
 	}
 	
 	public static List<Db_Product> getProductsBySeller(String seller) {
 
-		SessionFactory factory = MySessionFactory.getSessionFactory();
+		SessionFactory factory = sessionfactory.getSessionFactory();
 		Session session = factory.openSession();
 		Transaction tx = session.getTransaction();
 		
@@ -99,13 +130,13 @@ public class AbstractProductUtils {
 
 		tx.commit();
 		session.close();
-		factory.close();
+		
 		return product;
 	}
 	
 	public static List<Db_Product> getProductsByCatagory(String catagory) {
 
-		SessionFactory factory = MySessionFactory.getSessionFactory();
+		SessionFactory factory = sessionfactory.getSessionFactory();
 		Session session = factory.openSession();
 		Transaction tx = session.getTransaction();
 		
@@ -118,13 +149,13 @@ public class AbstractProductUtils {
 
 		tx.commit();
 		session.close();
-		factory.close();
+		
 		return product;
 	}
 	
 	public static List<Db_Product> getProductsByBasePriceInRange(float low,float high) {
 
-		SessionFactory factory = MySessionFactory.getSessionFactory();
+		SessionFactory factory = sessionfactory.getSessionFactory();
 		Session session = factory.openSession();
 		Transaction tx = session.getTransaction();
 		
@@ -138,13 +169,13 @@ public class AbstractProductUtils {
 
 		tx.commit();
 		session.close();
-		factory.close();
+		
 		return product;
 	}
 	
 	public static List<Db_Product> getProductsBySalePriceInRange(float low,float high) {
 
-		SessionFactory factory = MySessionFactory.getSessionFactory();
+		SessionFactory factory = sessionfactory.getSessionFactory();
 		Session session = factory.openSession();
 		Transaction tx = session.getTransaction();
 		
@@ -158,13 +189,13 @@ public class AbstractProductUtils {
 
 		tx.commit();
 		session.close();
-		factory.close();
+		
 		return product;
 	}
 	
 	public static List<Db_Product> getProductsByDiscountInRange(float low,float high) {
 
-		SessionFactory factory = MySessionFactory.getSessionFactory();
+		SessionFactory factory = sessionfactory.getSessionFactory();
 		Session session = factory.openSession();
 		Transaction tx = session.getTransaction();
 		
@@ -178,13 +209,13 @@ public class AbstractProductUtils {
 
 		tx.commit();
 		session.close();
-		factory.close();
+		
 		return product;
 	}
 	
 	public static List<Db_Product> getProductsByDiscountPercentInRange(float low,float high) {
 
-		SessionFactory factory = MySessionFactory.getSessionFactory();
+		SessionFactory factory = sessionfactory.getSessionFactory();
 		Session session = factory.openSession();
 		Transaction tx = session.getTransaction();
 		
@@ -198,7 +229,7 @@ public class AbstractProductUtils {
 
 		tx.commit();
 		session.close();
-		factory.close();
+		
 		return product;
 	}
 

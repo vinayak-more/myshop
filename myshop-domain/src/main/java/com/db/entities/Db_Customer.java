@@ -30,6 +30,9 @@ public class Db_Customer {
 
 	@Column(name="email")
 	private String email;
+	
+	@OneToOne(mappedBy="customer", cascade=CascadeType.ALL)
+	private Db_Order order;
 
 	public int getRid() {
 		return rid;

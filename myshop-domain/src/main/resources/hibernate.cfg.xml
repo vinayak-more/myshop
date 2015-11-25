@@ -13,7 +13,7 @@
 		<property name="format_sql">true</property>
 		<property name="hbm2ddl.auto">update</property>
 		<mapping class="com.db.entities.Db_Address" />
-		<mapping class="com.db.entities.Db_BookingDetails" />
+		<mapping class="com.db.entities.Db_Order" />
 		<mapping class="com.db.entities.Db_Customer" />
 		<mapping class="com.db.entities.Db_Product" />
 		<mapping class="com.db.entities.Db_Images" />

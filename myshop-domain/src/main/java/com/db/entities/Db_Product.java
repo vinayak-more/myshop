@@ -1,12 +1,15 @@
 package com.db.entities;
 
+import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
+import javax.persistence.ManyToMany;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
@@ -43,7 +46,6 @@ public class Db_Product {
 	@Column(name = "rating")
 	private float rating;
 
-
 	@Column(name = "description")
 	private String description;
 
@@ -59,13 +61,25 @@ public class Db_Product {
 	@Column(name = "units_in_order")
     private int unitsInOrder;
 	
-	@Column(name = "condition")
+	@Column(name = "pcondition")
     private String condition;
 	
 	@OneToMany(mappedBy="product" ,fetch = FetchType.EAGER)
 	private List<Db_Images> images;
 	
-	public String getCategory() {
+	@ManyToMany(fetch=FetchType.EAGER,mappedBy="products")
+	private Set<Db_Order> orders=new HashSet<Db_Order>();
+	
+	
+	public Set<Db_Order> getOrders() {
+        return orders;
+    }
+
+    public void setOrders(Set<Db_Order> orders) {
+        this.orders = orders;
+    }
+
+    public String getCategory() {
 		return category;
 	}
 

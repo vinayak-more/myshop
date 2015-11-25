@@ -12,9 +12,9 @@ import com.db.entities.Db_Address;
 import com.db.myshop_dbutils.MySessionFactory;
 @SuppressWarnings("unchecked")
 public class AbstractAddressUtils {
-
+    static MySessionFactory sessionfactory=new MySessionFactory();
 	public static void insertAddress(Db_Address address) {
-		SessionFactory factory = MySessionFactory.getSessionFactory();
+		SessionFactory factory = sessionfactory.getSessionFactory();
 		Session session = factory.openSession();
 		Transaction tx = session.getTransaction();
 
@@ -24,13 +24,13 @@ public class AbstractAddressUtils {
 
 		tx.commit();
 		session.close();
-		factory.close();
+		
 
 	}
 	
 	public static List<Db_Address> getAddressByCustomerId(int customer_id) {
 
-		SessionFactory factory = MySessionFactory.getSessionFactory();
+		SessionFactory factory = sessionfactory.getSessionFactory();
 		Session session = factory.openSession();
 		Transaction tx = session.getTransaction();
 		
@@ -43,13 +43,13 @@ public class AbstractAddressUtils {
 
 		tx.commit();
 		session.close();
-		factory.close();
+		
 		return address;
 	}
 	
 	public static Db_Address getAddressById(int rid) {
 
-		SessionFactory factory = MySessionFactory.getSessionFactory();
+		SessionFactory factory = sessionfactory.getSessionFactory();
 		Session session = factory.openSession();
 		Transaction tx = session.getTransaction();
 		
@@ -62,13 +62,13 @@ public class AbstractAddressUtils {
 
 		tx.commit();
 		session.close();
-		factory.close();
+		
 		return address;
 	}
 	
 	public static List<Db_Address> getAddressByCity(String city) {
 
-		SessionFactory factory = MySessionFactory.getSessionFactory();
+		SessionFactory factory = sessionfactory.getSessionFactory();
 		Session session = factory.openSession();
 		Transaction tx = session.getTransaction();
 		
@@ -81,13 +81,13 @@ public class AbstractAddressUtils {
 
 		tx.commit();
 		session.close();
-		factory.close();
+		
 		return address;
 	}
 	
 	public static List<Db_Address> getAddressByState(String state) {
 
-		SessionFactory factory = MySessionFactory.getSessionFactory();
+		SessionFactory factory = sessionfactory.getSessionFactory();
 		Session session = factory.openSession();
 		Transaction tx = session.getTransaction();
 		
@@ -100,13 +100,13 @@ public class AbstractAddressUtils {
 
 		tx.commit();
 		session.close();
-		factory.close();
+		
 		return address;
 	}
 	
 	public static List<Db_Address> getAddressByCountry(String country) {
 
-		SessionFactory factory = MySessionFactory.getSessionFactory();
+		SessionFactory factory = sessionfactory.getSessionFactory();
 		Session session = factory.openSession();
 		Transaction tx = session.getTransaction();
 		
@@ -119,13 +119,13 @@ public class AbstractAddressUtils {
 
 		tx.commit();
 		session.close();
-		factory.close();
+		
 		return address;
 	}
 	
 	public static List<Db_Address> getAddressByPincode(int pincode) {
 
-		SessionFactory factory = MySessionFactory.getSessionFactory();
+		SessionFactory factory = sessionfactory.getSessionFactory();
 		Session session = factory.openSession();
 		Transaction tx = session.getTransaction();
 		
@@ -138,13 +138,13 @@ public class AbstractAddressUtils {
 
 		tx.commit();
 		session.close();
-		factory.close();
+		
 		return address;
 	}
 	
 	public static List<Db_Address> getAddressByLandmark(String landmark) {
 
-		SessionFactory factory = MySessionFactory.getSessionFactory();
+		SessionFactory factory = sessionfactory.getSessionFactory();
 		Session session = factory.openSession();
 		Transaction tx = session.getTransaction();
 		
@@ -157,13 +157,13 @@ public class AbstractAddressUtils {
 
 		tx.commit();
 		session.close();
-		factory.close();
+		
 		return address;
 	}
 	
 	public static List<Db_Address> getAddressByCustomerFname(String fname) {
 
-		SessionFactory factory = MySessionFactory.getSessionFactory();
+		SessionFactory factory = sessionfactory.getSessionFactory();
 		Session session = factory.openSession();
 		Transaction tx = session.getTransaction();
 		
@@ -176,13 +176,13 @@ public class AbstractAddressUtils {
 
 		tx.commit();
 		session.close();
-		factory.close();
+		
 		return address;
 	}
 	
 	public static List<Db_Address> getAddressByCustomerLname(String lname) {
 
-		SessionFactory factory = MySessionFactory.getSessionFactory();
+		SessionFactory factory = sessionfactory.getSessionFactory();
 		Session session = factory.openSession();
 		Transaction tx = session.getTransaction();
 		
@@ -195,7 +195,7 @@ public class AbstractAddressUtils {
 
 		tx.commit();
 		session.close();
-		factory.close();
+		
 		return address;
 	}
 	

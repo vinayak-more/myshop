@@ -9,9 +9,9 @@ import com.db.entities.Db_EmailTemplate;
 import com.db.myshop_dbutils.MySessionFactory;
 
 public class AbstractEmailTemplateUtils {
-	
+    static MySessionFactory sessionfactory=new MySessionFactory();
 	public static Db_EmailTemplate getEmailTemplateByType(String emailType){
-		SessionFactory factory = MySessionFactory.getSessionFactory();
+		SessionFactory factory = sessionfactory.getSessionFactory();
 		Session session = factory.openSession();
 		Transaction tx = session.getTransaction();
 		
@@ -24,7 +24,7 @@ public class AbstractEmailTemplateUtils {
 
 		tx.commit();
 		session.close();
-		factory.close();
+		
 		return emailTemplate;
 	}
 

@@ -7,28 +7,28 @@ import org.hibernate.*;
 
 import com.db.entities.Db_Customer;
 import com.db.myshop_dbutils.MySessionFactory;
+import com.webstore.commons.Constants;
 @SuppressWarnings("unchecked")
 public class AbstractCustomerUtils {
-
+    static MySessionFactory sessionfactory=new MySessionFactory();
 	public static void insertCustomer(Db_Customer customer) {
 
-		SessionFactory factory = MySessionFactory.getSessionFactory();
+		SessionFactory factory = sessionfactory.getSessionFactory();
 		Session session = factory.openSession();
 		Transaction tx = session.getTransaction();
 		
 		tx.begin();
 
-		session.persist(customer);
+		session.save(customer);
 
 		tx.commit();
 		session.close();
-		factory.close();
 
 	}
 
 	public static Db_Customer getCustomerById(int rid) {
 
-		SessionFactory factory = MySessionFactory.getSessionFactory();
+		SessionFactory factory = sessionfactory.getSessionFactory();
 		Session session = factory.openSession();
 		Transaction tx = session.getTransaction();
 		
@@ -41,13 +41,13 @@ public class AbstractCustomerUtils {
 
 		tx.commit();
 		session.close();
-		factory.close();
+		
 		return customer;
 	}
 	
 	public static Db_Customer getCustomerByUsername(String username) {
 
-        SessionFactory factory = MySessionFactory.getSessionFactory();
+        SessionFactory factory = sessionfactory.getSessionFactory();
         Session session = factory.openSession();
         Transaction tx = session.getTransaction();
         
@@ -60,13 +60,13 @@ public class AbstractCustomerUtils {
 
         tx.commit();
         session.close();
-        factory.close();
+        
         return customer;
     }
 	
 	public static Db_Customer getCustomerByEmail(String email) {
 
-        SessionFactory factory = MySessionFactory.getSessionFactory();
+        SessionFactory factory = sessionfactory.getSessionFactory();
         Session session = factory.openSession();
         Transaction tx = session.getTransaction();
         
@@ -79,14 +79,14 @@ public class AbstractCustomerUtils {
 
         tx.commit();
         session.close();
-        factory.close();
+        
         return customer;
     }
 	
 
 	public static List<Db_Customer> getCustomerByFname(String fname) {
 
-		SessionFactory factory = MySessionFactory.getSessionFactory();
+		SessionFactory factory = sessionfactory.getSessionFactory();
 		Session session = factory.openSession();
 		Transaction tx = session.getTransaction();
 		
@@ -99,13 +99,13 @@ public class AbstractCustomerUtils {
 
 		tx.commit();
 		session.close();
-		factory.close();
+		
 		return customer;
 	}
 	
 	public static List<Db_Customer> getCustomerByLname(String lname) {
 
-		SessionFactory factory = MySessionFactory.getSessionFactory();
+		SessionFactory factory = sessionfactory.getSessionFactory();
 		Session session = factory.openSession();
 		Transaction tx = session.getTransaction();
 		
@@ -118,13 +118,13 @@ public class AbstractCustomerUtils {
 
 		tx.commit();
 		session.close();
-		factory.close();
+		
 		return customer;
 	}
 	
 	public static List<Db_Customer> getCustomerByFullName(String fname, String lname) {
 
-		SessionFactory factory = MySessionFactory.getSessionFactory();
+		SessionFactory factory = sessionfactory.getSessionFactory();
 		Session session = factory.openSession();
 		Transaction tx = session.getTransaction();
 		
@@ -138,13 +138,13 @@ public class AbstractCustomerUtils {
 
 		tx.commit();
 		session.close();
-		factory.close();
+		
 		return customer;
 	}
 	
 	public static List<Db_Customer> getCustomerByMobile(String mobile) {
 
-		SessionFactory factory = MySessionFactory.getSessionFactory();
+		SessionFactory factory = sessionfactory.getSessionFactory();
 		Session session = factory.openSession();
 		Transaction tx = session.getTransaction();
 		
@@ -157,14 +157,14 @@ public class AbstractCustomerUtils {
 
 		tx.commit();
 		session.close();
-		factory.close();
+		
 		return customer;
 	}
 	
 	
 	
 	public static boolean updateCustomerFnameById(int rid, String fname){
-		SessionFactory factory = MySessionFactory.getSessionFactory();
+		SessionFactory factory = sessionfactory.getSessionFactory();
 		Session session = factory.openSession();
 		Transaction tx = session.getTransaction();
 		
@@ -178,13 +178,13 @@ public class AbstractCustomerUtils {
 		
 		tx.commit();
 		session.close();
-		factory.close();
+		
 		return rowsUpdated>=1?true:false;
 		
 	}
 	
 	public static boolean updateCustomerFnameByUsername(String username, String fname){
-		SessionFactory factory = MySessionFactory.getSessionFactory();
+		SessionFactory factory = sessionfactory.getSessionFactory();
 		Session session = factory.openSession();
 		Transaction tx = session.getTransaction();
 		
@@ -198,13 +198,13 @@ public class AbstractCustomerUtils {
 		
 		tx.commit();
 		session.close();
-		factory.close();
+		
 		return rowsUpdated>=1?true:false;
 		
 	}
 	
 	public static boolean updateCustomerLnameById(int rid, String lname){
-		SessionFactory factory = MySessionFactory.getSessionFactory();
+		SessionFactory factory = sessionfactory.getSessionFactory();
 		Session session = factory.openSession();
 		Transaction tx = session.getTransaction();
 		
@@ -218,13 +218,13 @@ public class AbstractCustomerUtils {
 		
 		tx.commit();
 		session.close();
-		factory.close();
+		
 		return rowsUpdated>=1?true:false;
 		
 	}
 	
 	public static boolean updateCustomerLnameByUsername(String username, String lname){
-		SessionFactory factory = MySessionFactory.getSessionFactory();
+		SessionFactory factory = sessionfactory.getSessionFactory();
 		Session session = factory.openSession();
 		Transaction tx = session.getTransaction();
 		
@@ -238,13 +238,13 @@ public class AbstractCustomerUtils {
 		
 		tx.commit();
 		session.close();
-		factory.close();
+		
 		return rowsUpdated>=1?true:false;
 		
 	}
 	
 	public static boolean updateCustomerMobileByUsername(String username, String mobile){
-		SessionFactory factory = MySessionFactory.getSessionFactory();
+		SessionFactory factory = sessionfactory.getSessionFactory();
 		Session session = factory.openSession();
 		Transaction tx = session.getTransaction();
 		
@@ -258,13 +258,13 @@ public class AbstractCustomerUtils {
 		
 		tx.commit();
 		session.close();
-		factory.close();
+		
 		return rowsUpdated>=1?true:false;
 		
 	}
 	
 	public static boolean updateCustomerMobileById(int rid, String mobile){
-		SessionFactory factory = MySessionFactory.getSessionFactory();
+		SessionFactory factory = sessionfactory.getSessionFactory();
 		Session session = factory.openSession();
 		Transaction tx = session.getTransaction();
 		
@@ -278,8 +278,8 @@ public class AbstractCustomerUtils {
 		
 		tx.commit();
 		session.close();
-		factory.close();
-		return rowsUpdated>=1?true:false;
+		
+		return rowsUpdated>=Constants.ONE?true:false;
 		
 	}
 

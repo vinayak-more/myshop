@@ -6,6 +6,7 @@ import java.util.Random;
 
 public class Order {
     int orderId;
+    private String status;
     Timestamp orderDate;
     Customer customer;
     Cart cart;
@@ -40,6 +41,14 @@ public class Order {
         this.cart = cart;
     }
 
+    public String getStatus() {
+        return status;
+    }
+
+    public void setStatus(String status) {
+        this.status = status;
+    }
+
     @Override
     public int hashCode() {
         final int prime = 31;
@@ -48,6 +57,7 @@ public class Order {
         result = prime * result + ((customer == null) ? 0 : customer.hashCode());
         result = prime * result + ((orderDate == null) ? 0 : orderDate.hashCode());
         result = prime * result + orderId;
+        result = prime * result + ((status == null) ? 0 : status.hashCode());
         return result;
     }
 
@@ -77,13 +87,18 @@ public class Order {
             return false;
         if (orderId != other.orderId)
             return false;
+        if (status == null) {
+            if (other.status != null)
+                return false;
+        } else if (!status.equals(other.status))
+            return false;
         return true;
     }
 
     @Override
     public String toString() {
-        return "Order [orderId=" + orderId + ", orderDate=" + orderDate + ", customer=" + customer + ", cart=" + cart
-                + "]";
+        return "Order [orderId=" + orderId + ", status=" + status + ", orderDate=" + orderDate + ", customer="
+                + customer + ", cart=" + cart + "]";
     }
     
     
