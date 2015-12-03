@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<script
+	src="js/angular.min.js"></script>
+<script type="text/javascript" src="js/myController.js"></script>
+<title>AngularJSDemo</title>
+</head>
+<style>
+table, th, td {
+	border: 1px solid grey;
+	border-collapse: collapse;
+	padding: 5px;
+}
+
+table tr:nth-child(odd) {
+	background-color: #f1f1f1;
+}
+
+table tr:nth-child(even) {
+	background-color: #ffffff;
+}
+</style>
+<body>
+	<div ng-app="myApp" ng-controller="myController"
+		ng-init="person={firstname:'Vinayak',lastname:'More'};
+		points=[1,2,3,4,5,6];
+		friends=['Supriya','Khushal','Aashutosh'];
+		players=[
+				{name:'Sachin Tendulkar',country:'India'},
+				{name:'Mahela Jayawardene',country:'ShriLanka'},
+				{name:'Kieran Pollard',country:'West Indies'}];
+				switch=false">
+		<p>
+			Enter your first name: <input type="text" ng-model="person.firstname" /><br>
+			Enter your last name:<input type="text" ng-model="person.lastname" /><br>
+			My Name is: {{person.firstname+" "+person.lastname}}<br> An
+			array of points: {{points}} <br>
+		<hr />
+		My friends are:
+		<ul>
+			<li ng-repeat="friend in friends">{{friend}}</li>
+		</ul>
+		<hr>
+
+		<br> <b>Currency Convertor:</b><br> Enter 1 doller Price in
+		Rupee:<input type="text" ng-model="rate" value="0" /><br> Enter
+		dollers you have:<input type="text" ng-model="quantity" value="0" /><br>
+		You have {{rate*quantity|currency}} rupees.
+		</p>
+		<hr>
+		We have following players:<br>
+		<li ng-repeat="player in players|orderBy:'name'"><b>{{player.name}}</b>
+			from <i>{{player.country}}</i>.</li>
+		<hr>
+		Data from Controller:{{dataFromController}}<br> <b>Result</b>:<i><b>{{result}}</b></i><br>
+		My Full Name is:{{fullName()}}
+		<hr>
+		Name in uppercase with filter: {{person.firstname|uppercase}}<br>
+		Name in lowercase with filter: {{person.firstname|lowercase}}
+		<hr>
+		<ul>
+			<li ng-repeat="name in names| orderBy:'Country'">{{name.Name+ "
+				"+ name.Country}}</li>
+		</ul>
+		<hr>
+		<select>
+			<optgroup label="Select Sort By">
+				<option ng-click="sortBy='Name'">Name</option>
+				<option ng-click="sortBy='Country'">Country</option>
+			</optgroup>
+		</select>
+
+		<table border="1">
+			<thead>
+				<tr>
+					<td>Sr.</td>
+					<td ng-click="sortBy='Name'">Name</td>
+					<td ng-click="sortBy='Country'">Country</td>
+				</tr>
+			</thead>
+			<tr ng-repeat="name in names| orderBy:sortBy">
+				<td>{{$index+1}}</td>
+				<td>{{name.Name}}</td>
+				<td>{{name.Country}}</td>
+			</tr>
+		</table>
+		<hr>
+		<p>
+			<button ng-disabled="switch">Click me!!!!</button>
+		</p>
+		<p>
+			<input type="checkbox" ng-model="switch">Button</input>
+		</p>
+		<hr>
+		<button ng-click="count=count+1">Click Me</button>
+		<p>{{count}}</p>
+
+	</div>
+</body>
+</html>
