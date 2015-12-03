@@ -68,8 +68,8 @@ public class Db_Order {
     @ManyToMany(fetch = FetchType.EAGER,cascade=CascadeType.ALL)
     @JoinTable(
             name = "order_product",
-            joinColumns = @JoinColumn(name = "order_id"),
-            inverseJoinColumns = @JoinColumn(name = "product_id"))
+            joinColumns = @JoinColumn(name = "order_id" ,referencedColumnName="rid"),
+            inverseJoinColumns = @JoinColumn(name = "product_id",referencedColumnName="rid"))
     private Set<Db_Product> products = new HashSet<Db_Product>();
 
     
